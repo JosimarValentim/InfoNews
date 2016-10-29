@@ -2,30 +2,30 @@ package infonews.cliente;
 
 public class Contato {
 	
-	private int id;
-	private int telefone;
+	private Integer id;
+	private String telefone;
 	private String tipo;
 	
-	public Contato(int id, int telefone, String tipo) {
+	public Contato(Integer id, String telefone, String tipo) {
 	
 		this.id = id;
 		this.telefone = telefone;
 		this.tipo = tipo;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
@@ -35,10 +35,6 @@ public class Contato {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public String toString() {
-		return "Contato [id=" + id + ", telefone=" + telefone + ", tipo=" + tipo + "]";
 	}
 	
 }

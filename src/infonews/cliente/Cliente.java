@@ -2,16 +2,16 @@ package infonews.cliente;
 
 public class Cliente {
 	
+	private double cpf;
 	private int codigo;
 	private String nome;
-	private double cpf;
-	private String contato;
+	private Contato contato;
 	
-	public Cliente(int codigo, String nome, double cpf, String contato) {
+	public Cliente(double cpf, int codigo, String nome, Contato contato) {
 		
+		this.cpf = cpf;
 		this.codigo = codigo;
 		this.nome = nome;
-		this.cpf = cpf;
 		this.contato = contato;
 	}
 
@@ -39,17 +39,19 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public String getContato() {
+	public Contato getContato() {
 		return contato;
 	}
 
-	public void setContato(String contato) {
+	public void setContato(Contato contato) {
 		this.contato = contato;
 	}
 
+	@Override
 	public String toString() {
 		return "Cliente [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", contato=" + contato + "]";
 	}
+	
 	
 
 }

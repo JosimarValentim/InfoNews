@@ -1,13 +1,13 @@
 package infonews.cadastro.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import infonews.cliente.Cliente;
+import infonews.cliente.Contato;
 import infonews.cadastro.jdbc.RepositorioClientes;
 	
 	public class RepositorioClientesBD implements RepositorioClientes{
@@ -124,9 +124,9 @@ import infonews.cadastro.jdbc.RepositorioClientes;
 				try {
 					psCli = con.prepareStatement(INSERT_CLIENTE);
 					psCli.setDouble(1, c.getCpf());
-					psCli.setString(2, c.getNome());
-					psCli.setString(3, c.getContato());
-					psCli.setInt(4, c.getCodigo());
+					psCli.setInt(2, c.getCodigo());
+					psCli.setString(3, c.getNome());
+					((Cliente) psCli).setContato(c.getContato());
 					
 					psCli.executeUpdate();
 					
@@ -152,14 +152,15 @@ import infonews.cadastro.jdbc.RepositorioClientes;
 						int bdCpf = rs.getInt(1);
 						int bdCodigo = rs.getInt(2);
 						String bdNome = rs.getString(3);
-						String bdContato = rs.getString(4);
+						Object bdContato = rs.getString(4);
 						
 						
-						Cliente cli = new Cliente(bdCpf, bdNome, bdCodigo, bdContato);
+						Cliente cli = new Cliente(bdCpf, bdCodigo, bdNome, (Contato) bdContato);
 						cli.setCpf(bdCpf);
-						cli.setNome(bdNome);
-						cli.setContato(bdContato);
 						cli.setCodigo(bdCodigo);
+						cli.setNome(bdNome);
+						cli.setContato((Contato) bdContato);
+						
 						return cli;
 					} else {
 						System.err.print(MSG_CLIENTE_CADASTRADO);
