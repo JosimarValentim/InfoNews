@@ -1,23 +1,30 @@
 package conexao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+import java.sql.*;
 
 public class BancoConect {
 	
-	public static void main(String[] args) throws SQLException{
+	static String status = "";
 	
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/mydb", "root", "");
-		System.out.println("Conectado");
-	
-		conn.close();
-	
-
+	public static Connection getConnection(){
+		Connection conn = null;
 		
+		try{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			
+			String url = "jdbc:mysql://localhost/mydb?user=root&password=";
+			conn = DriverManager.getConnection(url);
+			
+			status = "Conexao aberta";
+		}
+		catch(SQLException e){
+			status = e.getMessage();
+		}catch(ClassNotFoundException e){
+			status = e.getMessage();
+		}catch(Exception e){
+			status = e.getMessage();
+		}
+		return conn;
 	}
+	
 }
-
