@@ -22,7 +22,7 @@ public class FachadaJDBC {
 		String nomeDriver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/cadastro";
 		String user = "root";
-		String pwd = "root";
+		String pwd = "";
 
 		RepositorioClientes rep = new RepositorioClientesBD(nomeDriver,
 				url,user,pwd);
