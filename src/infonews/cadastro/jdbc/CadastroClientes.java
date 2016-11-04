@@ -1,8 +1,8 @@
 package infonews.cadastro.jdbc;
 
-import java.sql.ResultSet;
+import java.sql.ResultSet; 
 
-import infonews.cliente.*;
+import infonews.cliente.Cliente;
 
 public class CadastroClientes {
 	

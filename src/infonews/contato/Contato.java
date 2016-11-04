@@ -1,4 +1,4 @@
-package infonews.cliente;
+package infonews.contato;
 
 public class Contato {
 	

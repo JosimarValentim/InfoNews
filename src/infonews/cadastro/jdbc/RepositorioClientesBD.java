@@ -1,13 +1,13 @@
 package infonews.cadastro.jdbc;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import infonews.cliente.Cliente;
-import infonews.cliente.Contato;
+import infonews.contato.Contato;
 import infonews.cadastro.jdbc.RepositorioClientes;
 	
 	public class RepositorioClientesBD implements RepositorioClientes{
@@ -62,13 +62,13 @@ import infonews.cadastro.jdbc.RepositorioClientes;
 			"CPF inválido";
 
 		private static final String INSERT_CLIENTE =
-			"INSERT INTO cliente (cpf, nome, contato, id) VALUES (?,?,?,?)";
+			"INSERT INTO cliente (cpf, id, nome, contato) VALUES (?,?,?,?)";
 
 		private static final String PROCURA_CLI =
-			"SELECT cpf, nome, contato, id FROM cliente WHERE cpf = ?";
+			"SELECT cpf, id, nome, contato FROM cliente WHERE cpf = ?";
 		
 		private static final String LISTA_CLI =
-			"SELECT cpf, nome, contato, id FROM cliente";
+			"SELECT cpf, id, nome, contato FROM cliente";
 		
 		private static final String DELETE_CLI =
 			"DELETE FROM cliente WHERE cpf = ?";
@@ -149,13 +149,13 @@ import infonews.cadastro.jdbc.RepositorioClientes;
 					ps.setInt(1, cpf);
 					rs = ps.executeQuery();
 					if (rs.next()) {
-						int bdCpf = rs.getInt(1);
+						long bdCpf = rs.getInt(1);
 						int bdCodigo = rs.getInt(2);
 						String bdNome = rs.getString(3);
 						Object bdContato = rs.getString(4);
 						
 						
-						Cliente cli = new Cliente(bdCpf, bdCodigo, bdNome, (Contato) bdContato);
+						Cliente cli = new Cliente();
 						cli.setCpf(bdCpf);
 						cli.setCodigo(bdCodigo);
 						cli.setNome(bdNome);

@@ -20,7 +20,7 @@ public class FachadaJDBC {
 
 	private void initCadastros() {
 		String nomeDriver = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/cadastro";
+		String url = "jdbc:mysql://localhost:3306/mydb";
 		String user = "root";
 		String pwd = "";
 
