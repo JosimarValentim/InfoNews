@@ -1,4 +1,4 @@
-package conexao;
+package infonews.conexaoBD;
 
 public class Inicio {
 	

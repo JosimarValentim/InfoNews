@@ -1,4 +1,4 @@
-package conexao;
+package infonews.conexaoBD;
 
 import java.sql.*;
 
