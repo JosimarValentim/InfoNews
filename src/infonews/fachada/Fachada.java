@@ -1,19 +1,15 @@
-package infonews.cadastro.jdbc;
+package infonews.fachada;
 
 import java.sql.ResultSet;
 
-import infonews.cliente.Cliente;
-import infonews.cadastro.jdbc.CadastroClientes;
-import infonews.cadastro.jdbc.FachadaJDBC;
-import infonews.cadastro.jdbc.RepositorioClientes;
-import infonews.cadastro.jdbc.RepositorioClientesBD;
+import infonews.cliente.*;
 
-public class FachadaJDBC {
-	
-	private static FachadaJDBC instancia;
+
+public class Fachada {
+	private static Fachada instancia;
 	private CadastroClientes clientes;
 
-	private FachadaJDBC() {
+	private Fachada() {
 
 		initCadastros();
 	}
@@ -24,19 +20,19 @@ public class FachadaJDBC {
 		String user = "root";
 		String pwd = "";
 
-		RepositorioClientes rep = new RepositorioClientesBD(nomeDriver,
+		IRepositorioCliente rep = new RepositorioClientesBD(nomeDriver,
 				url,user,pwd);
 		clientes = new CadastroClientes(rep);
 		//RepositorioClientes repClientes = new ArrayClientes();
-		RepositorioClientes repClientes = new RepositorioClientesBD(nomeDriver,
+		IRepositorioCliente repClientes = new RepositorioClientesBD(nomeDriver,
 				url,user,pwd);
 		clientes = new CadastroClientes(repClientes);
 	}
 
-	public static FachadaJDBC obterInstancia() {
+	public static Fachada obterInstancia() {
 
 		if (instancia == null) {
-			instancia = new FachadaJDBC();
+			instancia = new Fachada();
 		}
 		return instancia;
 	}
@@ -57,5 +53,6 @@ public class FachadaJDBC {
 	public ResultSet listar() {
 		return clientes.listar();
 	}
+
 
 }

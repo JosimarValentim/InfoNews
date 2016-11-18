@@ -5,13 +5,6 @@ public class Contato {
 	private Integer id;
 	private String telefone;
 	private String tipo;
-	
-	public Contato(Integer id, String telefone, String tipo) {
-	
-		this.id = id;
-		this.telefone = telefone;
-		this.tipo = tipo;
-	}
 
 	public Integer getId() {
 		return id;

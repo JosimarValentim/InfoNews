@@ -1,4 +1,4 @@
-package infonews.cadastro.jdbc;
+package infonews.cliente;
 
 import java.sql.ResultSet; 
 
@@ -6,9 +6,9 @@ import infonews.cliente.Cliente;
 
 public class CadastroClientes {
 	
-	private RepositorioClientes clientes;
+	private IRepositorioCliente clientes;
 
-	public CadastroClientes(RepositorioClientes rep) {
+	public CadastroClientes(IRepositorioCliente rep) {
 
 		this.clientes = rep;
 	}

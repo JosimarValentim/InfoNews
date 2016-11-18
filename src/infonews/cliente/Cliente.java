@@ -1,20 +1,19 @@
 package infonews.cliente;
 
-import infonews.contato.Contato;
-
 public class Cliente {
 	
-	private double cpf;
-	private int codigo;
+	private long cpf;
+	private int idCliente;
 	private String nome;
-	private Contato contato;
+	private int contato_id;
+	private int endereco_idEndereco;
 
-	public int getCodigo() {
-		return codigo;
+	public int getIdCliente() {
+		return idCliente;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public String getNome() {
@@ -25,25 +24,35 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public double getCpf() {
+	public long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(double cpf) {
+	public void setCpf(long cpf) {
 		this.cpf = cpf;
 	}
 
-	public Contato getContato() {
-		return contato;
+	public int getContato_id() {
+		return contato_id;
 	}
 
-	public void setContato(Contato contato) {
-		this.contato = contato;
+	public void setContato_id(int contato_id) {
+		this.contato_id = contato_id;
+	}
+	
+
+	public int getEndereco_idEndereco() {
+		return endereco_idEndereco;
+	}
+
+	public void setEndereco_idEndereco(int endereco_idEndereco) {
+		this.endereco_idEndereco = endereco_idEndereco;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", contato=" + contato + "]";
-	}	
+		return "Cliente [cpf=" + cpf + ", idCliente=" + idCliente + ", nome=" + nome + ", contato_id=" + contato_id
+				+ ", endereco_idEndereco=" + endereco_idEndereco + "]";
+	}
 
 }

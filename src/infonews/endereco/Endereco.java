@@ -2,27 +2,17 @@ package infonews.endereco;
 
 public class Endereco {
 	
-	private String cep;
+	private int idEndereco;
+	private int cep;
 	private String rua;
 	private int numero;
 	private String bairro;
 	private String cidade;
-	private String pais;
 	
-	public Endereco(String cep, String rua, int numero, String bairro, String cidade, String pais) {
-		
-		this.cep = cep;
-		this.rua = rua;
-		this.numero = numero;
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.pais = pais;
-	}
-	
-	public String getCep() {
+	public int getCep() {
 		return cep;
 	}
-	public void setCep(String cep) {
+	public void setCep(int cep) {
 		this.cep = cep;
 	}
 	public String getRua() {
@@ -49,16 +39,16 @@ public class Endereco {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
-	public String getPais() {
-		return pais;
+	public int getIdEndereco() {
+		return idEndereco;
 	}
-	public void setPais(String pais) {
-		this.pais = pais;
+	public void setIdEndereco(int idEndereco) {
+		this.idEndereco = idEndereco;
 	}
 
 	public String toString() {
-		return "Endereco [cep=" + cep + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade="
-				+ cidade + ", pais=" + pais + "]";
+		return "Endereco [idEndereco=" + idEndereco + "cep=" + cep + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade="
+				+ cidade + "]";
 	}
 	
 }

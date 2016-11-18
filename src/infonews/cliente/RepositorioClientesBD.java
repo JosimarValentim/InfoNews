@@ -1,16 +1,15 @@
-package infonews.cadastro.jdbc;
+package infonews.cliente;
 
 import java.sql.Connection; 
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import infonews.cliente.Cliente;
-import infonews.contato.Contato;
-import infonews.cadastro.jdbc.RepositorioClientes;
 	
-	public class RepositorioClientesBD implements RepositorioClientes{
+	public class RepositorioClientesBD implements IRepositorioCliente{
 
 		/**
 		 * O nome do driver JDBC a ser usado na conexão.
@@ -62,13 +61,13 @@ import infonews.cadastro.jdbc.RepositorioClientes;
 			"CPF inválido";
 
 		private static final String INSERT_CLIENTE =
-			"INSERT INTO cliente (cpf, id, nome, contato) VALUES (?,?,?,?)";
+			"INSERT INTO cliente (idCliente, nome, cpf, contato_id, endereco_idEndereco) VALUES (?,?,?,?,?)";
 
 		private static final String PROCURA_CLI =
-			"SELECT cpf, id, nome, contato FROM cliente WHERE cpf = ?";
+			"SELECT idCliente, nome, cpf, contato_id, endereco_idEndereco FROM cliente WHERE cpf = ?";
 		
 		private static final String LISTA_CLI =
-			"SELECT cpf, id, nome, contato FROM cliente";
+			"SELECT idCliente, nome, cpf, contato_id, endereco_idEndereco FROM cliente";
 		
 		private static final String DELETE_CLI =
 			"DELETE FROM cliente WHERE cpf = ?";
@@ -123,11 +122,12 @@ import infonews.cadastro.jdbc.RepositorioClientes;
 				PreparedStatement psEnd = null;
 				try {
 					psCli = con.prepareStatement(INSERT_CLIENTE);
-					psCli.setDouble(1, c.getCpf());
-					psCli.setInt(2, c.getCodigo());
-					psCli.setString(3, c.getNome());
-					((Cliente) psCli).setContato(c.getContato());
 					
+					psCli.setInt(1, c.getIdCliente());
+					psCli.setString(2, c.getNome());
+					psCli.setLong(3, c.getCpf());
+					psCli.setInt(4, c.getContato_id());
+					psCli.setInt(5, c.getEndereco_idEndereco());
 					psCli.executeUpdate();
 					
 				} catch (SQLException e) {
@@ -149,17 +149,18 @@ import infonews.cadastro.jdbc.RepositorioClientes;
 					ps.setInt(1, cpf);
 					rs = ps.executeQuery();
 					if (rs.next()) {
-						long bdCpf = rs.getInt(1);
-						int bdCodigo = rs.getInt(2);
-						String bdNome = rs.getString(3);
-						Object bdContato = rs.getString(4);
-						
+						int bdCodigo = rs.getInt(1);
+						String bdNome = rs.getString(2);
+						long bdCpf = rs.getLong(3);
+						int bdContato = rs.getInt(4);
+						int bdEndereco = rs.getInt(5);
 						
 						Cliente cli = new Cliente();
-						cli.setCpf(bdCpf);
-						cli.setCodigo(bdCodigo);
+						cli.setIdCliente(bdCodigo);
 						cli.setNome(bdNome);
-						cli.setContato((Contato) bdContato);
+						cli.setCpf(bdCpf);
+						cli.setContato_id(bdContato);
+						cli.setEndereco_idEndereco(bdEndereco);
 						
 						return cli;
 					} else {

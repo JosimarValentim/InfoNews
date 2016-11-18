@@ -5,19 +5,21 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import infonews.cliente.Cliente;
+import infonews.fachada.Fachada;
 
 public class TesteCadastro {
 	
 	public static void main(String[] args) {
 		Cliente cliente = new Cliente();
+		cliente.setIdCliente(3);
+		cliente.setNome("Tarcicio");
 		cliente.setCpf(1234567891);
-		cliente.setCodigo(1);
-		cliente.setNome("Mayos");
-		cliente.setContato(null);
+		cliente.setContato_id(1);
+		cliente.setEndereco_idEndereco(1);
 		
 
-		FachadaJDBC.obterInstancia().cadastrar(cliente);
-		ResultSet rs = FachadaJDBC.obterInstancia().listar();
+		Fachada.obterInstancia().cadastrar(cliente);
+		ResultSet rs = Fachada.obterInstancia().listar();
 		
 		ResultSetMetaData mdata;
 		try {
