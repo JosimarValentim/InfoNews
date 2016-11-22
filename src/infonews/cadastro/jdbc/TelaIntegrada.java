@@ -1,6 +1,8 @@
 package infonews.cadastro.jdbc;
 
 import java.awt.BorderLayout;
+
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -88,7 +90,7 @@ public class TelaIntegrada extends JFrame{
 		pCadastra.add(tfNome);
 		tfNome.setColumns(50);
 		
-		JLabel lblCpf = new JLabel("CPF");
+		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(572, 10, 37, 14);
 		pCadastra.add(lblCpf);
 		
@@ -104,14 +106,14 @@ public class TelaIntegrada extends JFrame{
 		tfIdCliente = new JTextField();
 		tfIdCliente.setBounds(45, 80, 86, 20);
 		pCadastra.add(tfIdCliente);
-		tfIdCliente.setColumns(10);
+		tfIdCliente.setColumns(5);
 		
 		JLabel lblContato_id = new JLabel("ID CONTATO:");
 		lblContato_id.setBounds(500, 61, 79, 14);
 		pCadastra.add(lblContato_id);
 		
 		tfContato_id = new JTextField();
-		tfContato_id.setBounds(60, 90, 96, 40);
+		tfContato_id.setBounds(500, 62, 100, 15);
 		pCadastra.add(tfIdCliente);
 		tfContato_id.setColumns(10);
 		
