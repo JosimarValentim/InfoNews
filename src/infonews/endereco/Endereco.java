@@ -9,6 +9,18 @@ public class Endereco {
 	private String bairro;
 	private String cidade;
 	
+	public Endereco(int idEndereco, int cep, String rua, String bairro, int numero, String cidade) {
+		super();
+		this.idEndereco = idEndereco;
+		this.cep = cep;
+		this.rua = rua;
+		this.numero = numero;
+		this.bairro = bairro;
+		this.cidade = cidade;
+	}
+	public Endereco(int i, String string, String string2, String string3, String string4) {
+		// TODO Auto-generated constructor stub
+	}
 	public int getCep() {
 		return cep;
 	}

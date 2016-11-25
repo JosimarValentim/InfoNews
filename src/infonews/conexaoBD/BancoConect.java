@@ -4,27 +4,13 @@ import java.sql.*;
 
 public class BancoConect {
 	
-	static String status = "";
+	public static Connection getConnection() throws ClassNotFoundException, SQLException{
+		Class.forName("com.mysql.jdbc.Driver");
+		return DriverManager.getConnection("jdbc:mysql://localhost/mydb", "root","");
+	}
 	
-	public static Connection getConnection(){
-		Connection conn = null;
+	private BancoConect() {
 		
-		try{
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			
-			String url = "jdbc:mysql://localhost/mydb?user=root&password=";
-			conn = DriverManager.getConnection(url);
-			
-			status = "Conexao aberta";
-		}
-		catch(SQLException e){
-			status = e.getMessage();
-		}catch(ClassNotFoundException e){
-			status = e.getMessage();
-		}catch(Exception e){
-			status = e.getMessage();
-		}
-		return conn;
 	}
 	
 }

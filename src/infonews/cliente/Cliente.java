@@ -1,12 +1,34 @@
 package infonews.cliente;
 
+import infonews.endereco.Endereco;
+
 public class Cliente {
 	
-	private long cpf;
+	private String cpf;
 	private int idCliente;
 	private String nome;
+	private String tipo;
 	private int contato_id;
-	private int endereco_idEndereco;
+	private Endereco endereco_idEndereco;
+
+	public Cliente(int id, String nome, String cpf, String tipo, int contato_id, Endereco endereco_idEndereco) {
+		
+		this.cpf = cpf;
+		this.idCliente = id;
+		this.nome = nome;
+		this.tipo = tipo;
+		this.contato_id = contato_id;
+		this.endereco_idEndereco = endereco_idEndereco;
+	}
+
+	public Cliente() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Cliente(int id, String nome2, String cpf2, String tipo2, int contato_id2, int i) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getIdCliente() {
 		return idCliente;
@@ -23,12 +45,18 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public String getTipo(){
+		return tipo;
+	}
+	public void setTipo(String tipo){
+		this.tipo = tipo;
+	}
 
-	public long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -41,17 +69,17 @@ public class Cliente {
 	}
 	
 
-	public int getEndereco_idEndereco() {
+	public Endereco getEndereco_idEndereco() {
 		return endereco_idEndereco;
 	}
 
-	public void setEndereco_idEndereco(int endereco_idEndereco) {
-		this.endereco_idEndereco = endereco_idEndereco;
+	public void setEndereco_idEndereco(Endereco endereco) {
+		this.endereco_idEndereco = endereco;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [cpf=" + cpf + ", idCliente=" + idCliente + ", nome=" + nome + ", contato_id=" + contato_id
+		return "Cliente [cpf=" + cpf + ", idCliente=" + idCliente + ", nome=" + nome + ",tipo=" + tipo + ", contato_id=" + contato_id
 				+ ", endereco_idEndereco=" + endereco_idEndereco + "]";
 	}
 

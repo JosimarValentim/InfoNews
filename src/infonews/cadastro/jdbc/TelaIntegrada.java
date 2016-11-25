@@ -26,6 +26,8 @@ import javax.swing.border.EmptyBorder;
 import infonews.cliente.*;
 import infonews.fachada.*;
 import infonews.cadastro.util.*;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
 
 
 public class TelaIntegrada extends JFrame{
@@ -37,9 +39,6 @@ public class TelaIntegrada extends JFrame{
 	private JTextField tfCpf;
 	private JTextField tfContato_id;
 	private JTextField tfEndereco_IdEndereco;
-	
-	
-	final JPanel plistar;
 	ResultSet rs;
 	/**
 	 * Launch the application.
@@ -77,7 +76,7 @@ public class TelaIntegrada extends JFrame{
 		panel.setLayout(null);
 		
 		JPanel pCadastra = new JPanel();
-		pCadastra.setBounds(10, 0, 764, 251);
+		pCadastra.setBounds(10, 11, 764, 251);
 		panel.add(pCadastra);
 		pCadastra.setLayout(null);
 		
@@ -121,10 +120,6 @@ public class TelaIntegrada extends JFrame{
 		lblEndereco_IdEndereco.setBounds(221, 61, 79, 14);
 		pCadastra.add(lblEndereco_IdEndereco);
 		
-		plistar = new JPanel();
-		plistar.setBounds(10, 262, 754, 279);
-		panel.add(plistar);
-		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -149,19 +144,10 @@ public class TelaIntegrada extends JFrame{
 	}
 	
 	private void listar() {
-		plistar.removeAll();
 		rs = Fachada.obterInstancia().listar();
 		try {
-			plistar.setLayout(null);
-			ResultSetTable rst = new ResultSetTable(rs);
-			rst.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);  
-			rst.setPreferredScrollableViewportSize(new Dimension(240,140));  
-	        JScrollPane scrollPane = new JScrollPane(rst);
-	        scrollPane.setSize(734, 274);
-	        plistar.add(scrollPane);
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
 	}
-
 }
