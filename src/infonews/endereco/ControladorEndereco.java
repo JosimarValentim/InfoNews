@@ -28,7 +28,7 @@ private RepositorioEnderecoBD repositorioEndereco;
 		}
 	}
 	
-	public Endereco procurarEndereco (Integer id){
+	public Endereco procurarEndereco (int id){
 		return repositorioEndereco.procurar(id);
 	}
 	

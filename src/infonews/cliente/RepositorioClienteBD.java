@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import infonews.conexaoBD.BancoConect;
+import infonews.endereco.Endereco;
 import infonews.endereco.RepositorioEnderecoBD;
+import infonews.fachada.Fachada;
 import infonews.cliente.Cliente;
 import infonews.conexaoBD.BancoConect;
 
@@ -21,19 +23,17 @@ import infonews.conexaoBD.BancoConect;
 		
 		public void cadastrar(Cliente cliente) {
 
-		String sql = "insert into cliente (idCliente, nome, cpf, tipo, contato_id, endereco_idEndereco) values (?,?,?,?,?,?)";
+		String sql = "insert into cliente (nome, cpf, tipo, contato_id, endereco_idEndereco) values (?,?,?,?,?)";
 		
 		try {
 			Connection con = BancoConect.getConnection();
 			
 			PreparedStatement pStmnt = con.prepareStatement(sql);
 			
-			pStmnt.setInt(1, cliente.getIdCliente());
-			pStmnt.setString(2, cliente.getNome());
-			pStmnt.setString(3, cliente.getCpf());
-			pStmnt.setString(4, cliente.getTipo());
-			pStmnt.setInt(5, cliente.getContato_id());
-			pStmnt.setInt(6, cliente.getEndereco_idEndereco().getIdEndereco());
+			pStmnt.setString(1, cliente.getNome());
+			pStmnt.setString(2, cliente.getCpf());
+			pStmnt.setString(3, cliente.getTipo());
+			pStmnt.setInt(4, cliente.getEndereco().getIdEndereco());
 			
 			
 			pStmnt.execute();
@@ -63,7 +63,9 @@ public Cliente procurar(int id) {
 		ResultSet resultSet = pStmnt.executeQuery();
 		
 		if(resultSet.next()){
-			return new Cliente(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getInt(5), resultSet.getInt(6));
+			Fachada fachada = new Fachada();
+			Endereco endereco = fachada.procurarEndereco(resultSet.getInt(6));
+			return new Cliente(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), endereco);
 		}
 		
 		pStmnt.close();
@@ -93,8 +95,7 @@ public void atualizar(Cliente cliente) {
 			pStmnt.setString(2, cliente.getNome());
 			pStmnt.setString(3, cliente.getCpf());
 			pStmnt.setString(4, cliente.getTipo());
-			pStmnt.setInt(5, cliente.getContato_id());
-			pStmnt.setInt(6, cliente.getEndereco_idEndereco().getIdEndereco());
+			pStmnt.setInt(6, cliente.getEndereco().getIdEndereco());
 			
 			pStmnt.executeUpdate();
 			
@@ -135,7 +136,7 @@ public boolean remover(int id) {
 		pStmnt2.close();
 		
 		PreparedStatement pStmnt3 = con.prepareStatement(sql3);
-		pStmnt3.setInt(1, cliente.getEndereco_idEndereco().getIdEndereco());
+		pStmnt3.setInt(1, cliente.getEndereco().getIdEndereco());
 		pStmnt3.executeUpdate();
 		pStmnt3.close();
 		
@@ -203,8 +204,7 @@ public ArrayList<Cliente> listar() {
 			cliente.setNome(resultSet.getString(2));
 			cliente.setCpf(resultSet.getString(3));
 			cliente.setTipo(resultSet.getString(4));
-			cliente.setContato_id(resultSet.getInt(5));
-			cliente.setEndereco_idEndereco(new RepositorioEnderecoBD().procurar(resultSet.getInt(6)));
+			cliente.setEndereco(new RepositorioEnderecoBD().procurar(resultSet.getInt(6)));
 			
 			lista.add(cliente);
 		}

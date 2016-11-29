@@ -2,10 +2,12 @@ package infonews.fachada;
 
 import java.util.ArrayList;
 
+
 import infonews.cliente.Cliente;
 import infonews.cliente.ControladorCliente;
 import infonews.contato.Contato;
 import infonews.endereco.ControladorEndereco;
+import infonews.endereco.Endereco;
 import infonews.fornecedor.CadastrarFornecedor;
 
 public class Fachada {
@@ -16,9 +18,11 @@ public class Fachada {
 	private static Fachada fachada;
 	
 	
-	private Fachada() {
+	public Fachada() {
 		
 		this.controladorCliente = new ControladorCliente();
+		this.controladorEndereco = new ControladorEndereco();
+		this.controladorFornecedor = new CadastrarFornecedor();
 
 	}
 	public static Fachada getInstance() {
@@ -51,4 +55,31 @@ public class Fachada {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	//Endereço
+	
+	public Endereco procurarEndereco(int id){
+		return this.controladorEndereco.procurarEndereco(id);
+	}
+	
+	public void cadastrarEndereco (Endereco endereco){
+		controladorEndereco.cadastrarEndereco(endereco);
+	}
+	
+	public void atualizarEndereco (Endereco endereco){
+		controladorEndereco.atualizar(endereco);
+	}
+	
+	public boolean removerEndereco (Integer id){
+		return controladorEndereco.removerEndereco(id);
+	}
+	
+	public Endereco procurarEndereco (Integer id){
+		return controladorEndereco.procurarEndereco(id);
+	}
+	
+	public ArrayList<Endereco> listarEndereco(){
+		return controladorEndereco.listarEndereco();
+	}
+	
 }
