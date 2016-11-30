@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 
 
+
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import infonews.contato.Contato;
+import infonews.contato.RepositorioContato;
 import infonews.conexaoBD.BancoConect;
 import infonews.endereco.Endereco;
 import infonews.endereco.RepositorioEnderecoBD;
@@ -33,7 +36,8 @@ import infonews.conexaoBD.BancoConect;
 			pStmnt.setString(1, cliente.getNome());
 			pStmnt.setString(2, cliente.getCpf());
 			pStmnt.setString(3, cliente.getTipo());
-			pStmnt.setInt(4, cliente.getEndereco().getIdEndereco());
+			pStmnt.setInt(4, cliente.getContato().getIdContato());
+			pStmnt.setInt(5, cliente.getEndereco().getIdEndereco());
 			
 			
 			pStmnt.execute();
@@ -65,7 +69,8 @@ public Cliente procurar(int id) {
 		if(resultSet.next()){
 			Fachada fachada = new Fachada();
 			Endereco endereco = fachada.procurarEndereco(resultSet.getInt(6));
-			return new Cliente(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), endereco);
+			Contato contato = fachada.procurarContato(resultSet.getInt(5));
+			return new Cliente(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), contato, endereco);
 		}
 		
 		pStmnt.close();
@@ -95,6 +100,7 @@ public void atualizar(Cliente cliente) {
 			pStmnt.setString(2, cliente.getNome());
 			pStmnt.setString(3, cliente.getCpf());
 			pStmnt.setString(4, cliente.getTipo());
+			pStmnt.setInt(5, cliente.getContato().getIdContato());			
 			pStmnt.setInt(6, cliente.getEndereco().getIdEndereco());
 			
 			pStmnt.executeUpdate();
@@ -204,6 +210,7 @@ public ArrayList<Cliente> listar() {
 			cliente.setNome(resultSet.getString(2));
 			cliente.setCpf(resultSet.getString(3));
 			cliente.setTipo(resultSet.getString(4));
+			cliente.setContato(new RepositorioContato().procurar(resultSet.getInt(5)));
 			cliente.setEndereco(new RepositorioEnderecoBD().procurar(resultSet.getInt(6)));
 			
 			lista.add(cliente);

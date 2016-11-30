@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import infonews.cliente.Cliente;
 import infonews.cliente.ControladorCliente;
 import infonews.contato.Contato;
+import infonews.contato.ControladorContato;
 import infonews.endereco.ControladorEndereco;
 import infonews.endereco.Endereco;
 import infonews.fornecedor.CadastrarFornecedor;
@@ -15,6 +16,7 @@ public class Fachada {
 	private ControladorCliente controladorCliente;
 	private ControladorEndereco controladorEndereco;
 	private CadastrarFornecedor controladorFornecedor;
+	private ControladorContato controladorContato;
 	private static Fachada fachada;
 	
 	
@@ -23,6 +25,7 @@ public class Fachada {
 		this.controladorCliente = new ControladorCliente();
 		this.controladorEndereco = new ControladorEndereco();
 		this.controladorFornecedor = new CadastrarFornecedor();
+		this.controladorContato = new ControladorContato();
 
 	}
 	public static Fachada getInstance() {
@@ -51,17 +54,10 @@ public class Fachada {
 	public ArrayList<Cliente> listaCliente() {
 		return this.controladorCliente.listar();
 	}
-	public void cadastrarContato(Contato contato) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	//Endereço
-	
-	public Endereco procurarEndereco(int id){
-		return this.controladorEndereco.procurarEndereco(id);
-	}
-	
+		
 	public void cadastrarEndereco (Endereco endereco){
 		controladorEndereco.cadastrarEndereco(endereco);
 	}
@@ -70,16 +66,38 @@ public class Fachada {
 		controladorEndereco.atualizar(endereco);
 	}
 	
-	public boolean removerEndereco (Integer id){
-		return controladorEndereco.removerEndereco(id);
+	public boolean removerEndereco (int idEndereco){
+		return controladorEndereco.removerEndereco(idEndereco);
 	}
 	
-	public Endereco procurarEndereco (Integer id){
-		return controladorEndereco.procurarEndereco(id);
+	public Endereco procurarEndereco (int idEndereco){
+		return controladorEndereco.procurarEndereco(idEndereco);
 	}
 	
 	public ArrayList<Endereco> listarEndereco(){
 		return controladorEndereco.listarEndereco();
+	}
+	
+	//Contato
+	
+	public void cadastrarContato (Contato contato){
+		controladorContato.cadastrarContato(contato);
+	}
+	
+	public void atualizarContato (Endereco endereco){
+		controladorEndereco.atualizar(endereco);
+	}
+	
+	public boolean removerContato (int idContato){
+		return controladorContato.removerContato(idContato);
+	}
+	
+	public Contato procurarContato (int idContato){
+		return controladorContato.procurarContato(idContato);
+	}
+	
+	public ArrayList<Contato> listarContato(){
+		return controladorContato.listarContato();
 	}
 	
 }

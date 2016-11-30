@@ -1,94 +1,34 @@
-package infonews.endereco;
+package infonews.contato;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import infonews.conexaoBD.BancoConect;
-import infonews.endereco.Endereco;
 
-public class RepositorioEnderecoBD implements IRepositorioEndereco {
+public class RepositorioContato implements IRepositorioContato {
 	
-	public RepositorioEnderecoBD() {
+	public RepositorioContato() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public void cadastrar(Endereco endereco) {
-		
-		
-		String sql = "insert into endereco (idEndereco, numero, bairro, cidade, cep, rua) values (?,?,?,?,?,?)";
+	public void cadastrar(Contato contato) {
+		String sql = "insert into contato (idContato, telefone, tipo) values (?,?,?)";
 		
 		try {
-			Connection con = BancoConect.getConnection();
 			
-			PreparedStatement pStmnt = con.prepareStatement(sql);
-			pStmnt.setInt(1, endereco.getIdEndereco());
-			pStmnt.setString(2, endereco.getNumero());
-			pStmnt.setString(3, endereco.getBairro());
-			pStmnt.setString(4, endereco.getCidade());
-			pStmnt.setString(5, endereco.getCep()); 	
-			pStmnt.setString(6, endereco.getRua());
-			
-			pStmnt.execute();
-			
-			pStmnt.close();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void atualizar(Endereco endereco) {
-		String sql = "update endereco set numero = ?, bairro = ?, cidade = ?, cep = ?, rua = ? where idEndereco = ?";
-		
-		try {
-			Connection con = BancoConect.getConnection();
-			
-			PreparedStatement pStmnt = con.prepareStatement(sql);
-			pStmnt.setInt(1, endereco.getIdEndereco());
-			pStmnt.setString(2, endereco.getNumero());
-			pStmnt.setString(3, endereco.getBairro());
-			pStmnt.setString(4, endereco.getCidade());
-			pStmnt.setString(5, endereco.getCep()); 	
-			pStmnt.setString(6, endereco.getRua());
-			
-			pStmnt.executeUpdate();
-			pStmnt.close();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-	}
-
-	@Override
-	public Endereco procurar(int id) {
-		String sql = "select * from endereco where idEndereco = ?";
-		
-		try {
 			Connection con = BancoConect.getConnection();
 			
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, id);
 			
-			ResultSet resultSet = ps.executeQuery();
+			ps.setInt(1, contato.getIdContato());
+			ps.setString(2, contato.getTelefone());
+			ps.setString(3, contato.getTipo());
 			
-			if(resultSet.next()){
-				return new Endereco(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
-			}
-			
-			resultSet.close();
+			ps.execute();
 			ps.close();
 			con.close();
 		} catch (SQLException e) {
@@ -98,19 +38,71 @@ public class RepositorioEnderecoBD implements IRepositorioEndereco {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return null;
 	}
 
 	@Override
-	public boolean remover(int id) {
-		String sql = "delete from endereco where idEndereco = ?";
+	public void atualizar(Contato contato) {
+		String sql = "update contato set idContato = ?, telefone = ?, tipo = ? where idContato = ?";
 		
 		try {
 			Connection con = BancoConect.getConnection();
 			
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, id);
+			
+			ps.setInt(1, contato.getIdContato());
+			ps.setString(2, contato.getTelefone());
+			ps.setString(3, contato.getTipo());
+			
+			ps.executeUpdate();
+			ps.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Contato procurar(int idContato) {
+		String sql = "select * from contato where idContato = ?";
+		
+		try {
+			Connection con = BancoConect.getConnection();
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idContato);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()){
+				return new Contato(rs.getInt(1), rs.getString(2), rs.getString(3));
+			}
+			
+			ps.close();
+			rs.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean remover(int idContato) {
+		String sql = "delete from contato where idContato = ?";
+		
+		try {
+			Connection con = BancoConect.getConnection();
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idContato);
 			
 			ps.executeUpdate();
 			
@@ -130,16 +122,16 @@ public class RepositorioEnderecoBD implements IRepositorioEndereco {
 	}
 
 	@Override
-	public boolean existe(int id) {
+	public boolean existe(int idContato) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public ArrayList<Endereco> listarEndereco() {
-		ArrayList<Endereco> lista = new ArrayList<>();
+	public ArrayList<Contato> listar() {
+		ArrayList<Contato> listar = new ArrayList<>();
 		
-		String sql = "select * from endereco";
+		String sql = "select * from contato";
 		
 		try {
 			Connection con = BancoConect.getConnection();
@@ -148,9 +140,9 @@ public class RepositorioEnderecoBD implements IRepositorioEndereco {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()){
-				Endereco endereco = new Endereco(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+				Contato contato = new Contato(rs.getInt(1), rs.getString(2),rs.getString(3));
 				
-				lista.add(endereco);
+				listar.add(contato);
 			}
 			
 			ps.close();
@@ -165,7 +157,7 @@ public class RepositorioEnderecoBD implements IRepositorioEndereco {
 		}
 		
 		
-		return lista;
+		return listar;
 	}
 
 }

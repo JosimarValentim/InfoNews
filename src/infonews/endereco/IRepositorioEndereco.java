@@ -7,10 +7,10 @@ public interface IRepositorioEndereco {
 	
 	public void cadastrar (Endereco endereco);
 	public void atualizar (Endereco endereco);
-	public Endereco procurar (int id);
-	public boolean remover (int id);
-	public boolean existe (int id);
-	public ArrayList<Endereco> listar();
+	public Endereco procurar (int idEndereco);
+	public boolean remover (int idEndereco);
+	public boolean existe (int idEndereco);
+	public ArrayList<Endereco> listarEndereco();
 	
 	
 

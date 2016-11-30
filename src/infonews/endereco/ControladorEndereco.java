@@ -20,20 +20,20 @@ private RepositorioEnderecoBD repositorioEndereco;
 		repositorioEndereco.atualizar(endereco);
 	}
 	
-	public boolean removerEndereco (int id){
-		if(procurarEndereco(id) != null){
-			return repositorioEndereco.remover(id);		
+	public boolean removerEndereco (int idEndereco){
+		if(procurarEndereco(idEndereco) != null){
+			return repositorioEndereco.remover(idEndereco);		
 		}else{
 			return false;
 		}
 	}
 	
-	public Endereco procurarEndereco (int id){
-		return repositorioEndereco.procurar(id);
+	public Endereco procurarEndereco (int idEndereco){
+		return repositorioEndereco.procurar(idEndereco);
 	}
 	
 	public ArrayList<Endereco> listarEndereco(){
-		return repositorioEndereco.listar();
+		return repositorioEndereco.listarEndereco();
 	}
 
 }

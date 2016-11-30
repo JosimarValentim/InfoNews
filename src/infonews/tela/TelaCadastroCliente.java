@@ -3,8 +3,6 @@ package infonews.tela;
 import javax.swing.JPanel;
 
 
-
-
 import javax.swing.border.TitledBorder;
 
 import infonews.contato.Contato;
@@ -38,6 +36,7 @@ public class TelaCadastroCliente extends JPanel {
 	private JTextField tfBairro;
 	private JTextField tfNumero;
 	private JTextField tfCidade;
+	private JTextField tfTipoContato;
 
 	/**
 	 * Create the panel.
@@ -60,9 +59,6 @@ public class TelaCadastroCliente extends JPanel {
 		tfIdEndereco.setColumns(10);
 		
 		JLabel lblTipoTelefone = new JLabel("Telefone:");
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Fixo", "Celular", "Fax"}));
 		
 		tfTelefone = new JTextField();
 		tfTelefone.setColumns(10);
@@ -101,6 +97,18 @@ public class TelaCadastroCliente extends JPanel {
 		
 		tfCidade = new JTextField();
 		tfCidade.setColumns(10);
+		
+		JLabel lblTipoContato = new JLabel("Tipo do contato:");
+		
+		tfTipoContato = new JTextField();
+		tfTipoContato.setColumns(10);
+		
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				limparCampos();
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -108,9 +116,7 @@ public class TelaCadastroCliente extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnCadastra)
-								.addComponent(lblEndereco)))
+							.addComponent(lblEndereco))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(45)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -122,19 +128,11 @@ public class TelaCadastroCliente extends JPanel {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(tfBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(lblNumero)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(tfNumero, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(lblCidade)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(tfCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(tfTelefone, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(lblTipoContato)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE))
+									.addComponent(tfTipoContato, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addComponent(tfNome, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
 								.addComponent(tfCpf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
@@ -145,7 +143,23 @@ public class TelaCadastroCliente extends JPanel {
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(lblRua)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(tfRua, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)))))
+									.addComponent(tfRua, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(tfBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(lblNumero)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnLimpar)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(tfNumero, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(lblCidade)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(tfCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(109)
+							.addComponent(btnCadastra)))
 					.addContainerGap(18, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -168,7 +182,8 @@ public class TelaCadastroCliente extends JPanel {
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(tfTelefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblTipoTelefone)
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(lblTipoContato)
+								.addComponent(tfTipoContato, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 					.addGap(18)
 					.addComponent(lblEndereco)
 					.addGap(11)
@@ -185,9 +200,11 @@ public class TelaCadastroCliente extends JPanel {
 						.addComponent(tfNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(tfCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCidade))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnCadastra)
-					.addGap(20))
+					.addGap(30)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCadastra)
+						.addComponent(btnLimpar))
+					.addGap(32))
 		);
 		
 		setLayout(groupLayout);
@@ -196,8 +213,9 @@ public class TelaCadastroCliente extends JPanel {
 	private void cadastrarCliente() {
 		
 		Fachada fachada = Fachada.getInstance();
+		Contato contato = new Contato(1, tfTelefone.getText(), tfTipoContato.getText());
 		Endereco endereco = new Endereco(1, tfCep.getText(), tfRua.getText(), tfBairro.getText(), tfNumero.getText(), tfCidade.getText());
-		Cliente cliente = new Cliente(1, tfNome.getText(), tfCpf.getText(),tfTelefone.getText(),endereco);
+		Cliente cliente = new Cliente(1, tfNome.getText(), tfCpf.getText(), tfTelefone.getText(), contato, endereco);
 		
 		fachada.cadastraCliente(cliente);
 		fachada.cadastrarEndereco(endereco);
@@ -215,7 +233,15 @@ public class TelaCadastroCliente extends JPanel {
 		limparCampos();	
 	}
 	private void limparCampos() {
-		// TODO Auto-generated method stub
+		tfNome.setText("");
+		tfCpf.setText("");
+		tfTelefone.setText("");
+		tfTipoContato.setText("");
+		tfCep.setText("");
+		tfRua.setText("");
+		tfBairro.setText("");
+		tfNumero.setText("");
+		tfCidade.setText("");
 		
 	}
 }

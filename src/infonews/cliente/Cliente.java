@@ -1,5 +1,6 @@
 package infonews.cliente;
 
+import infonews.contato.Contato;
 import infonews.endereco.Endereco;
 
 public class Cliente {
@@ -8,26 +9,37 @@ public class Cliente {
 	private String cpf;
 	private String nome;
 	private String tipo;
+	private Contato contato;
 	private Endereco endereco;
+	
+	public Cliente(int idCliente, String nome, String cpf, String tipo, Contato contato, Endereco endereco) {
 
-	public Cliente(int id, String nome, String cpf, String tipo, Endereco endereco) {
-		
+		this.idCliente = idCliente;
 		this.cpf = cpf;
-		this.idCliente = id;
 		this.nome = nome;
 		this.tipo = tipo;
+		this.contato = contato;
 		this.endereco = endereco;
 	}
-	
+
 	public Cliente(){
 		
 	}
+
 	public int getIdCliente() {
 		return idCliente;
 	}
 
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getNome() {
@@ -37,20 +49,22 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getTipo(){
+
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo){
+
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public Contato getContato() {
+		return contato;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}	
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
 
 	public Endereco getEndereco() {
 		return endereco;
@@ -62,7 +76,8 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [cpf=" + cpf + ", idCliente=" + idCliente + ", nome=" + nome + ",tipo=" + tipo + " endereco=" + endereco + "]";
+		return "Cliente [idCliente=" + idCliente + ", cpf=" + cpf + ", nome=" + nome + ", tipo=" + tipo
+				+ ", contato=" + contato + ", endereco=" + endereco + "]";
 	}
 
 }
