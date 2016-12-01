@@ -84,8 +84,8 @@ public class Fachada {
 		controladorContato.cadastrarContato(contato);
 	}
 	
-	public void atualizarContato (Endereco endereco){
-		controladorEndereco.atualizar(endereco);
+	public void atualizarContato (Contato contato){
+		controladorContato.atualizarContato(contato);
 	}
 	
 	public boolean removerContato (int idContato){

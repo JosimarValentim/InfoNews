@@ -2,8 +2,6 @@ package infonews.fachada;
 
 import java.util.ArrayList;
 
-
-
 import infonews.cliente.Cliente;
 import infonews.contato.Contato;
 import infonews.endereco.Endereco;

@@ -1,6 +1,7 @@
-package infonews.TelaEndereco;
+package infonews.telaEndereco;
 
 import javax.swing.JPanel;
+
 
 import javax.swing.border.TitledBorder;
 
@@ -11,6 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class TelaCadastroEndereco extends JPanel {
 	private JTextField tfNumero;
@@ -23,6 +26,7 @@ public class TelaCadastroEndereco extends JPanel {
 	 * Create the panel.
 	 */
 	public TelaCadastroEndereco() {
+		setBackground(Color.WHITE);
 		setBorder(new TitledBorder(null, "Cadstrar Endereco", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(null);
 		
@@ -78,7 +82,7 @@ public class TelaCadastroEndereco extends JPanel {
 			}
 
 		});
-		btnCadastrar.setBounds(30, 214, 89, 23);
+		btnCadastrar.setBounds(30, 214, 105, 23);
 		add(btnCadastrar);
 		
 		JButton btnLimpar = new JButton("Limpar");
@@ -89,6 +93,11 @@ public class TelaCadastroEndereco extends JPanel {
 		});
 		btnLimpar.setBounds(145, 214, 89, 23);
 		add(btnLimpar);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaCadastroEndereco.class.getResource("/icones/outroo.png")));
+		lblNewLabel.setBounds(303, 201, 80, 69);
+		add(lblNewLabel);
 		
 		
 

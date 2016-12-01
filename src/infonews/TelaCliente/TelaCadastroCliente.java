@@ -1,6 +1,7 @@
-package infonews.tela;
+package infonews.TelaCliente;
 
 import javax.swing.JPanel;
+
 
 
 import javax.swing.border.TitledBorder;
@@ -25,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class TelaCadastroCliente extends JPanel {
 	private JTextField tfNome;
@@ -42,6 +44,7 @@ public class TelaCadastroCliente extends JPanel {
 	 * Create the panel.
 	 */
 	public TelaCadastroCliente() {
+		setBackground(Color.WHITE);
 		setBorder(new TitledBorder(null, "Cadastrar Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		JLabel lblNome = new JLabel("Nome:");
@@ -109,6 +112,9 @@ public class TelaCadastroCliente extends JPanel {
 				limparCampos();
 			}
 		});
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaCadastroCliente.class.getResource("/icones/outroo.png")));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -149,8 +155,11 @@ public class TelaCadastroCliente extends JPanel {
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(lblNumero)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnLimpar)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(btnLimpar)
+											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(lblNewLabel))
 										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(tfNumero, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 											.addGap(18)
@@ -160,7 +169,7 @@ public class TelaCadastroCliente extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(109)
 							.addComponent(btnCadastra)))
-					.addContainerGap(18, Short.MAX_VALUE))
+					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -200,11 +209,17 @@ public class TelaCadastroCliente extends JPanel {
 						.addComponent(tfNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(tfCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCidade))
-					.addGap(30)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCadastra)
-						.addComponent(btnLimpar))
-					.addGap(32))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(30)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnCadastra)
+								.addComponent(btnLimpar))
+							.addGap(98))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(lblNewLabel)
+							.addGap(33))))
 		);
 		
 		setLayout(groupLayout);
@@ -215,12 +230,14 @@ public class TelaCadastroCliente extends JPanel {
 		Fachada fachada = Fachada.getInstance();
 		Contato contato = new Contato(1, tfTelefone.getText(), tfTipoContato.getText());
 		Endereco endereco = new Endereco(1, tfCep.getText(), tfRua.getText(), tfBairro.getText(), tfNumero.getText(), tfCidade.getText());
-		Cliente cliente = new Cliente(1, tfNome.getText(), tfCpf.getText(), tfTelefone.getText(), contato, endereco);
+		Cliente cliente = new Cliente(1, tfNome.getText(), tfCpf.getText(), tfTipoContato.getText(), contato, endereco);
 		
 		fachada.cadastraCliente(cliente);
 		fachada.cadastrarEndereco(endereco);
+		fachada.cadastrarContato(contato);
 		
 		ArrayList<Cliente> lista = fachada.listaCliente();
+		ArrayList<Contato> listar = fachada.listarContato();
 		
 		int indiceCliente = 0;
 		
@@ -228,9 +245,14 @@ public class TelaCadastroCliente extends JPanel {
 			if(lista.get(i).getCpf().equalsIgnoreCase(cliente.getCpf())){
 				indiceCliente = lista.get(i).getIdCliente();
 			}
+			for(int c=0; c<listar.size();c++){
+				if(listar.get(c).getTelefone().equalsIgnoreCase(contato.getTelefone())){
+					contato = lista.get(c).getContato();
+				}
+			
 		}
 		
-		limparCampos();	
+		limparCampos();}	
 	}
 	private void limparCampos() {
 		tfNome.setText("");

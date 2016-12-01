@@ -35,7 +35,7 @@ import infonews.conexaoBD.BancoConect;
 			
 			pStmnt.setString(1, cliente.getNome());
 			pStmnt.setString(2, cliente.getCpf());
-			pStmnt.setString(3, cliente.getTipo());
+			pStmnt.setString(3, cliente.getContato().getTipo());
 			pStmnt.setInt(4, cliente.getContato().getIdContato());
 			pStmnt.setInt(5, cliente.getEndereco().getIdEndereco());
 			
@@ -99,7 +99,7 @@ public void atualizar(Cliente cliente) {
 			pStmnt.setInt(1, cliente.getIdCliente());
 			pStmnt.setString(2, cliente.getNome());
 			pStmnt.setString(3, cliente.getCpf());
-			pStmnt.setString(4, cliente.getTipo());
+			pStmnt.setString(4, cliente.getContato().getTipo());
 			pStmnt.setInt(5, cliente.getContato().getIdContato());			
 			pStmnt.setInt(6, cliente.getEndereco().getIdEndereco());
 			
