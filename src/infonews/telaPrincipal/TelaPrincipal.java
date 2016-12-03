@@ -2,19 +2,20 @@ package infonews.telaPrincipal;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import infonews.TelaCliente.TelaCadastroCliente;
-import infonews.telaEndereco.TelaCadastroEndereco;
+import infonews.telaContato.TCadastroContato;
+import infonews.telaEndereco.tCadastroEndereco;
 import infonews.telaProduto.TelaProduto;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
@@ -57,6 +58,11 @@ public class TelaPrincipal {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/icones/info news.png")));
+		label.setBounds(157, 44, 600, 506);
+		frame.getContentPane().add(label);
+		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 403, 21);
 		frame.getContentPane().add(menuBar);
@@ -67,6 +73,7 @@ public class TelaPrincipal {
 		JMenuItem mntmCliente = new JMenuItem("Cliente");
 		mntmCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				TelaCadastroCliente tCadastroCliente = new TelaCadastroCliente();
 				
 				frame.setBounds(87, 103, 601, 356);
@@ -82,12 +89,13 @@ public class TelaPrincipal {
 		mntmEndereco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				TelaCadastroEndereco tCadastroEndereco = new TelaCadastroEndereco();
+				tCadastroEndereco tCadastroEndereco = new tCadastroEndereco();
 				
-				frame.setBounds(87, 103, 601, 356);
-				frame.setContentPane(tCadastroEndereco);
-				frame.getContentPane().revalidate();
-				frame.setVisible(true);
+				tCadastroEndereco.setBounds(100, 100, 603, 425);
+				frame.getContentPane().add(tCadastroEndereco);
+				tCadastroEndereco.getContentPane().revalidate();
+				tCadastroEndereco.setVisible(true);
+				
 			}
 		});
 		mnCadastrar.add(mntmEndereco);
@@ -106,17 +114,20 @@ public class TelaPrincipal {
 		});
 		mnCadastrar.add(mntmProduto);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Contato");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JMenuItem mntmContato = new JMenuItem("Contato");
+		mntmContato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				
+				TCadastroContato tContato = new TCadastroContato();				
+				
+				tContato.setBounds(100, 100, 450, 300);
+				frame.getContentPane().add(tContato);
+				tContato.getContentPane().revalidate();
+				tContato.setVisible(true);
 			}
 		});
-		mnCadastrar.add(mntmNewMenuItem);
+		mnCadastrar.add(mntmContato);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/icones/info news.png")));
-		lblNewLabel.setBounds(144, 32, 709, 506);
-		frame.getContentPane().add(lblNewLabel);
+		
 	}
 }

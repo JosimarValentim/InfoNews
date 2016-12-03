@@ -27,6 +27,8 @@ import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
+import javax.swing.JToolBar;
 
 public class TelaCadastroCliente extends JPanel {
 	private JTextField tfNome;
