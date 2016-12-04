@@ -16,10 +16,6 @@ public class ControladorCliente {
 	}
 
 	public void cadastrar(Cliente cliente){
-
-		if (cliente == null)
-			throw new IllegalArgumentException("Cliente Invalido.");
-
 		this.repositorioCliente.cadastrar(cliente);
 		
 	}

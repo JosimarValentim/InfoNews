@@ -20,12 +20,12 @@ public class ControladorContato {
 		repositorioContato.atualizar(contato);
 	}
 	
-	public Contato procurarContato (Integer id){
+	public Contato procurarContato (int id){
 		return repositorioContato.procurar(id);
 	}
 	
 	
-	public boolean removerContato (Integer id){
+	public boolean removerContato (int id){
 		if(procurarContato(id) != null){
 			return repositorioContato.remover(id);
 		}else{

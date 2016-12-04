@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import infonews.TelaCliente.TCadastroCliente;
 import infonews.TelaCliente.TelaCadastroCliente;
 import infonews.telaContato.TCadastroContato;
 import infonews.telaEndereco.tCadastroEndereco;
@@ -54,17 +55,12 @@ public class TelaPrincipal {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/icones/outroo.png")));
-		frame.setBounds(100, 100, 892, 600);
+		frame.setBounds(100, 100, 900, 601);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/icones/info news.png")));
-		label.setBounds(157, 44, 600, 506);
-		frame.getContentPane().add(label);
-		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 403, 21);
+		menuBar.setBounds(0, 0, 884, 21);
 		frame.getContentPane().add(menuBar);
 		
 		JMenu mnCadastrar = new JMenu("Cadastrar");
@@ -74,12 +70,12 @@ public class TelaPrincipal {
 		mntmCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				TelaCadastroCliente tCadastroCliente = new TelaCadastroCliente();
+				TCadastroCliente tCadastroCliente = new TCadastroCliente();
 				
-				frame.setBounds(87, 103, 601, 356);
-				frame.setContentPane(tCadastroCliente);
-				frame.getContentPane().revalidate();
-				frame.setVisible(true);
+				tCadastroCliente.setBounds(100, 100, 470, 454);
+				frame.getContentPane().add(tCadastroCliente);
+				tCadastroCliente.getContentPane().revalidate();
+				tCadastroCliente.setVisible(true);
 			
 			}
 		});

@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import infonews.cliente.Cliente;
 import infonews.contato.Contato;
+import infonews.endereco.Endereco;
 import infonews.fachada.Fachada;
 
 import javax.swing.JTextField;
@@ -17,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TCadastroContato extends JInternalFrame {
@@ -128,13 +131,14 @@ public class TCadastroContato extends JInternalFrame {
 	}
 	public void cadastraContato(){
 		
-		Fachada fachada = new Fachada();
+		Fachada fachada = Fachada.getInstance();
 		
 		Contato contato = new Contato(1, tfTelefone.getText(), tfTipo.getText());
 		
 		fachada.cadastrarContato(contato);
 		
-		limpar();
+		ArrayList<Contato> listaContato = fachada.listarContato();
+		listaContato.add(contato);
 	}
 	public void limpar(){
 		

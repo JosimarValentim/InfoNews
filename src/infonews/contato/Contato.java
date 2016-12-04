@@ -16,7 +16,7 @@ public class Contato {
 		
 	}
 
-	public Integer getIdContato() {
+	public int getIdContato() {
 		return idContato;
 	}
 
